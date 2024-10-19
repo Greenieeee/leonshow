@@ -6,17 +6,15 @@ export default function Webcam() {
     useEffect(() => {
         const videoElement = videoRef.current;
 
-        console.log(JSON.stringify(navigator));
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            // Request access to the webcam
             navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
-                videoElement.srcObject = stream;
-                processStream(videoElement);
-            })
-            .catch(error => {
-                console.error('Error accessing webcam: ', error);
-            });
+                .then(stream => {
+                    videoElement.srcObject = stream;
+                    processStream(videoElement);
+                })
+                .catch(error => {
+                    console.error('Error accessing webcam: ', error);
+                });
         } else {
             console.error('getUserMedia is not supported in this browser.');
         }
@@ -29,12 +27,16 @@ export default function Webcam() {
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
 
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                const frame = canvas.toDataURL('image/jpeg');
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
 
-                // Send the frame to the backend
-                sendFrameToBackend(frame);
-            }, 200); // 5 FPS (1000 ms / 5 FPS = 200 ms)
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    const frame = canvas.toDataURL('image/jpeg');
+
+                    sendFrameToBackend(frame);
+                }
+            }, 200);
         }
 
         function sendFrameToBackend(frame) {
@@ -55,7 +57,6 @@ export default function Webcam() {
         }
 
         return () => {
-            // Cleanup logic to stop video stream when component unmounts
             const stream = videoElement.srcObject;
             if (stream) {
                 stream.getTracks().forEach(track => track.stop());
@@ -64,8 +65,19 @@ export default function Webcam() {
     }, []);
 
     return (
-        <div>
-            <video ref={videoRef} autoPlay />
+        <div style={{ paddingTop: '2vh' }}>
+            <video
+                ref={videoRef}
+                autoPlay
+                className='main-wrapper-content'
+                style={{ 
+                    objectFit: 'fill', 
+                    height: '56vh',
+                    borderRadius: '10px',
+                    border: '3px solid #82b956',
+                    boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
+                }}
+            />
         </div>
     );
 };
