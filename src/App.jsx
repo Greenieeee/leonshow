@@ -16,56 +16,27 @@ function App() {
   // };
   // const [state, setState] = useState({ type: 'finishedAnalyzing', foundWaste });
 
-  // useEffect(() => {
-  //   const socket = new SockJS('http:/localhost:8080/ws');
-
-  //   const client = Stomp.over(socket);
-
-  //   socket.onopen = function () {
-  //     console.log('open socket');
-  //   }
-
-  //   client.connect({}, function (frame) {
-  //     console.log('Connected: ' + frame);
-  //     client.subscribe('/topic/messages', (greeting) => {
-  //       const foundWaste = {
-  //         category: 'plastic',
-  //         desc: 'Plastic Bottle',
-  //         reason: 'It is recyclable',
-  //       };
-  //       setState({ type: greeting.body, foundWaste });
-  //     });
-  //   });
-
-  //   // return () => {
-  //   //   client.disconnect();
-  //   // }
-  // }, [tableRef]);
-
   useEffect(() => {
-    const analyzingTimer = setTimeout(() => {
-      setState({ type: 'analyzing' });
-    }, 5000);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const socket = new SockJS(backendUrl + '/ws');
+    const client = Stomp.over(socket);
 
-    const finishedAnalyzingTimer = setTimeout(() => {
-      const foundWaste = {
-        category: 'plastic',
-        desc: 'Plastic Bottle',
-        reason: 'It is recyclable',
-      };
-      setState({ type: 'finishedAnalyzing', foundWaste });
-    }, 10000);
+    socket.onopen = function () {
+      console.log('open socket');
+    }
 
-    const primaryStateTimer = setTimeout(() => {
-      setState({ type: 'nothingDetected' });
-    }, 15000);
+    client.connect({}, function (frame) {
+      console.log('Connected: ' + frame);
+      client.subscribe('/topic/messages', (response) => {
+        const responseObj = JSON.parse(response.body);
+        setState(responseObj.foundWaste ? { type: responseObj.state, foundWaste: responseObj.foundWaste } : { type: responseObj.state });
+      });
+    });
 
-    return () => {
-      clearTimeout(analyzingTimer);
-      clearTimeout(finishedAnalyzingTimer);
-    };
-  }, []);
-
+    // return () => {
+    //   client.disconnect();
+    // }
+  }, [tableRef]);
 
   const enterFullscreen = () => {
     const elem = tableRef.current;

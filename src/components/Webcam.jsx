@@ -36,7 +36,7 @@ export default function Webcam() {
 
                     sendFrameToBackend(frame);
                 }
-            }, 200);
+            }, 1000);
         }
 
         function sendFrameToBackend(frame) {
