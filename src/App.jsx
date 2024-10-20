@@ -16,27 +16,27 @@ function App() {
   // };
   // const [state, setState] = useState({ type: 'finishedAnalyzing', foundWaste });
 
-  useEffect(() => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const socket = new SockJS(backendUrl + '/ws');
-    const client = Stomp.over(socket);
+  // useEffect(() => {
+  //   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  //   const socket = new SockJS(backendUrl + '/ws');
+  //   const client = Stomp.over(socket);
 
-    socket.onopen = function () {
-      console.log('open socket');
-    }
+  //   socket.onopen = function () {
+  //     console.log('open socket');
+  //   }
 
-    client.connect({}, function (frame) {
-      console.log('Connected: ' + frame);
-      client.subscribe('/topic/messages', (response) => {
-        const responseObj = JSON.parse(response.body);
-        setState(responseObj.foundWaste ? { type: responseObj.state, foundWaste: responseObj.foundWaste } : { type: responseObj.state });
-      });
-    });
+  //   client.connect({}, function (frame) {
+  //     console.log('Connected: ' + frame);
+  //     client.subscribe('/topic/messages', (response) => {
+  //       const responseObj = JSON.parse(response.body);
+  //       setState(responseObj.foundWaste ? { type: responseObj.state, foundWaste: responseObj.foundWaste } : { type: responseObj.state });
+  //     });
+  //   });
 
-    // return () => {
-    //   client.disconnect();
-    // }
-  }, [tableRef]);
+  //   // return () => {
+  //   //   client.disconnect();
+  //   // }
+  // }, [tableRef]);
 
   const enterFullscreen = () => {
     const elem = tableRef.current;
