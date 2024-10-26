@@ -33,17 +33,17 @@ export default function ChangingText({ greetingArray }: ChangingTextProps) {
   };
 
   return (
-    <AnimatePresence>
-      <motion.h1
+    <AnimatePresence mode='wait'>
+      <motion.div
         key={currentIndex}
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -20, opacity: 0 }}
-        transition={{ ease: "easeInOut" }}
         style={{ color: 'white', ...getFontStyle(currentIndex), position: "absolute" }}
+        initial={{ rotateX: 90, opacity: 0 }}
+        animate={{ rotateX: 0, opacity: 1 }}
+        exit={{ rotateX: -90, opacity: 0 }}
+        transition={{ duration: 0.6 }}
       >
         {greetingArray[currentIndex]}
-      </motion.h1>
+      </motion.div>
     </AnimatePresence>
   );
 };
