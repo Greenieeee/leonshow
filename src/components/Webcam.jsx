@@ -8,12 +8,14 @@ export default function Webcam() {
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ 
-                width: { ideal: 1640 },
-                height: { ideal: 1232 },
+                video: {
+                    width: { exact: 1640 },
+                    height: { exact: 1232 },
+                }
              })
                 .then(stream => {
                     videoElement.srcObject = stream;
-                    processStream(videoElement);
+                    // processStream(videoElement);
                 })
                 .catch(error => {
                     console.error('Error accessing webcam: ', error);
@@ -79,16 +81,6 @@ export default function Webcam() {
                     boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
                 }}
             />
-            {/* <div className="arrow-path">
-                <div className="arrow right delay-1"></div>
-                <div className="arrow right delay-2"></div>
-                <div className="arrow right delay-3"></div>
-            </div> */}
-            <div class="arrow-container">
-                <div class="arrow right"></div>
-                <div class="arrow right"></div>
-                <div class="arrow right"></div>
-            </div>
         </div>
     );
 };
