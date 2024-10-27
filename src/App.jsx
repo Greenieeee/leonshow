@@ -38,6 +38,28 @@ function App() {
   //   // }
   // }, [tableRef]);
 
+  useEffect(() => {
+    const analyzingTimer = setTimeout(() => {
+      setState({ type: 'analyzing' });
+    }, 5000);
+
+    const finishedAnalyzingTimer = setTimeout(() => {
+      const foundWaste = {
+        category: 'plastic',
+        desc: 'Plastic Bottle',
+        reason: 'It is recyclable',
+      };
+      setState({ type: 'finishedAnalyzing', foundWaste });
+    }, 10000);
+    const primaryStateTimer = setTimeout(() => {
+      setState({ type: 'nothingDetected' });
+    }, 15000);
+    return () => {
+      clearTimeout(analyzingTimer);
+      clearTimeout(finishedAnalyzingTimer);
+    };
+  }, []);
+
   const enterFullscreen = () => {
     const elem = tableRef.current;
     if (elem.requestFullscreen) {
