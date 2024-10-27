@@ -420,53 +420,20 @@
 
 
 
-
-@keyframes bounce {
-	0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-	40% {
-    transform: translateY(-30px);
-  }
-	60% {
-    transform: translateY(-15px);
-  }
-}
-
-/* .arrow {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  margin-left: -20px;
-  width: 40px;
-  height: 40px;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzAwRkYwMCIgZD0iTTI5My43NTEsNDU1Ljg2OGMtMjAuMTgxLDIwLjE3OS01My4xNjUsMTkuOTEzLTczLjY3My0wLjU5NWwwLDBjLTIwLjUwOC0yMC41MDgtMjAuNzczLTUzLjQ5My0wLjU5NC03My42NzIgIGwxODkuOTk5LTE5MGMyMC4xNzgtMjAuMTc4LDUzLjE2NC0xOS45MTMsNzMuNjcyLDAuNTk1bDAsMGMyMC41MDgsMjAuNTA5LDIwLjc3Miw1My40OTIsMC41OTUsNzMuNjcxTDI5My43NTEsNDU1Ljg2OHoiLz4KPHBhdGggZmlsbD0iIzAwRkYwMCIgZD0iTTIyMC4yNDksNDU1Ljg2OGMyMC4xOCwyMC4xNzksNTMuMTY0LDE5LjkxMyw3My42NzItMC41OTVsMCwwYzIwLjUwOS0yMC41MDgsMjAuNzc0LTUzLjQ5MywwLjU5Ni03My42NzIgIGwtMTkwLTE5MGMtMjAuMTc4LTIwLjE3OC01My4xNjQtMTkuOTEzLTczLjY3MSwwLjU5NWwwLDBjLTIwLjUwOCwyMC41MDktMjAuNzcyLDUzLjQ5Mi0wLjU5NSw3My42NzFMMjIwLjI0OSw0NTUuODY4eiIvPgo8L3N2Zz4=);
-  background-size: contain;
-  transform: rotate(-90deg);
-}
-
-.bounce {
-  animation: bounce 2s infinite;
-} */
-
-
-
-
-
 .arrow-path-left {
   display: flex;
   justify-content: center;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: -10vw;
+  margin-left: -15.5vw;
 }
 
 .arrow-head-left {
-  width: 3vw;
-  height: 3vw;
+  width: 3.7vw;
+  height: 3.7vw;
   border: 1vw solid;
-  border-color: #a3b954 transparent transparent #a3b954;
+  border-color: #9fce78 transparent transparent #9fce78;
   transform: rotate(135deg);
   position: relative;
   opacity: 0.8;
@@ -476,18 +443,18 @@
 }
 
 .arrow-head-left:not(:first-child) {
-  margin-left: -3vw; /* Negative margin to bring arrow heads closer */
+  margin-left: -3vw;
 }
 
 @keyframes shimmerleft {
   0% {
-    border-color: #a3b954 transparent transparent #a3b954;
+    border-color: #9fce78 transparent transparent #9fce78;
   }
   50% {
     border-color: #ccc7ce transparent transparent #ccc7ce;
   }
   100% {
-    border-color: #a3b954 transparent transparent #a3b954;
+    border-color: #9fce78 transparent transparent #9fce78;
   }
 }
 
@@ -499,16 +466,16 @@
   justify-content: flex-end;
   position: absolute;
   top: 50%;
-  width: 118%;
+  width: 125%;
   transform: translateY(-50%);
   margin-right: -5vw;
 }
 
 .arrow-head-right {
-  width: 3vw;
-  height: 3vw;
+  width: 3.7vw;
+  height: 3.7vw;
   border: 1vw solid;
-  border-color: #a3b954 transparent transparent #a3b954;
+  border-color: #9fce78 transparent transparent #9fce78;
   transform: rotate(-45deg);
   position: relative;
   opacity: 0.8;
@@ -523,13 +490,13 @@
 
 @keyframes shimmerright {
   0% {
-    border-color: #a3b954 transparent transparent #a3b954;
+    border-color: #9fce78 transparent transparent #9fce78;
   }
   50% {
     border-color: #ccc7ce transparent transparent #ccc7ce;
   }
   100% {
-    border-color: #a3b954 transparent transparent #a3b954;
+    border-color: #9fce78 transparent transparent #9fce78;
   }
 }
 
@@ -538,19 +505,19 @@
 }
 
 .delay-2 {
-  animation-delay: 0.5s;
+  animation-delay: 0.2s;
 }
 
 .delay-3 {
-  animation-delay: 1s;
+  animation-delay: 0.4s;
 }
 
 .delay-4 {
-  animation-delay: 1.5s;
+  animation-delay: 0.6s;
 }
 
 .delay-5 {
-  animation-delay: 2s;
+  animation-delay: 0.8s;
 }
 
 

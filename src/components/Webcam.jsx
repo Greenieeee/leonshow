@@ -84,7 +84,6 @@ export default function Webcam() {
                 style={{
                     height: '48vh',
                     borderRadius: '10px',
-                    border: '3px solid #82b956',
                     boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
                 }}
             />
