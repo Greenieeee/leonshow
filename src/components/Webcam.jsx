@@ -15,7 +15,7 @@ export default function Webcam() {
             })
                 .then(stream => {
                     videoElement.srcObject = stream;
-                    processStream(videoElement);
+                    // processStream(videoElement);
                 })
                 .catch(error => {
                     console.error('Error accessing webcam: ', error);
@@ -70,14 +70,27 @@ export default function Webcam() {
     }, []);
 
     return (
-        <div style={{ paddingTop: '4vh', width: '63.8vh', height: '48vh' }}>
+        // <div style={{ paddingTop: '4vh', width: '63.8vh', height: '48vh' }}>
+        //     <video
+        //         ref={videoRef}
+        //         autoPlay
+        //         style={{
+        //             objectFit: 'fill',
+        //             height: '48vh',
+        //             width: '63.8vh',
+        //             borderRadius: '10px',
+        //             border: '3px solid #82b956',
+        //             boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
+        //         }}
+        //     />
+        // </div>
+        <div style={{ paddingTop: '4vh', height: '48vh' }}>
             <video
                 ref={videoRef}
                 autoPlay
                 style={{
-                    objectFit: 'fill',
+                    objectFit: 'contain',
                     height: '48vh',
-                    width: '63.8vh',
                     borderRadius: '10px',
                     border: '3px solid #82b956',
                     boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
