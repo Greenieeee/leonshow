@@ -9,8 +9,8 @@ export default function Webcam() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
                 video: {
-                    width: { exact: 1640 },
-                    height: { exact: 1232 },
+                    width: { ideal: 1640 },
+                    height: { ideal: 1232 },
                 }
             })
                 .then(stream => {
@@ -60,6 +60,38 @@ export default function Webcam() {
             // .catch(error => console.error('Error sending frame: ', error));
             console.log('frame sent');
         }
+
+        async function getSupportedResolutions() {
+            const resolutions = [
+                { width: 1640, height: 1232 },
+                { width: 640, height: 480 },
+                { width: 1920, height: 1080 }
+            ];
+        
+            const supportedResolutions = [];
+        
+            for (const resolution of resolutions) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        video: {
+                            width: { exact: resolution.width },
+                            height: { exact: resolution.height },
+                        }
+                    });
+        
+                    // If successful, add resolution to supported list
+                    supportedResolutions.push(resolution);
+                    stream.getTracks().forEach(track => track.stop());
+                } catch (error) {
+                    console.log(`Resolution not supported: ${resolution.width}x${resolution.height}`);
+                }
+            }
+        
+            console.log('Supported Resolutions:', supportedResolutions);
+            return supportedResolutions;
+        }
+        
+        getSupportedResolutions();
 
         return () => {
             const stream = videoElement.srcObject;
