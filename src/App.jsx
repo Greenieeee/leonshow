@@ -96,7 +96,6 @@ function App() {
       <div ref={tableRef} className="app-container">
         <AnalyzerView state={state} />
       </div>
-      {/* <WebcamTest /> */}
     </div>
   );
 }

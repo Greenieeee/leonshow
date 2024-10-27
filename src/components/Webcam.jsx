@@ -7,15 +7,13 @@ export default function Webcam() {
         const videoElement = videoRef.current;
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({
-                video: {
-                    width: { ideal: 1640 },
-                    height: { ideal: 1232 },
-                }
-            })
+            navigator.mediaDevices.getUserMedia({ 
+                width: { ideal: 1640 },
+                height: { ideal: 1232 },
+             })
                 .then(stream => {
                     videoElement.srcObject = stream;
-                    // processStream(videoElement);
+                    processStream(videoElement);
                 })
                 .catch(error => {
                     console.error('Error accessing webcam: ', error);
@@ -61,39 +59,6 @@ export default function Webcam() {
             console.log('frame sent');
         }
 
-        async function getSupportedResolutions() {
-            const resolutions = [
-                { width: 1640, height: 1232 },
-                { width: 640, height: 480 },
-                { width: 1920, height: 1080 },
-                { width: 1920, height: 640 }
-            ];
-        
-            const supportedResolutions = [];
-        
-            for (const resolution of resolutions) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({
-                        video: {
-                            width: { exact: resolution.width },
-                            height: { exact: resolution.height },
-                        }
-                    });
-        
-                    // If successful, add resolution to supported list
-                    supportedResolutions.push(resolution);
-                    stream.getTracks().forEach(track => track.stop());
-                } catch (error) {
-                    console.log(`Resolution not supported: ${resolution.width}x${resolution.height}`);
-                }
-            }
-        
-            console.log('Supported Resolutions:', supportedResolutions);
-            return supportedResolutions;
-        }
-        
-        getSupportedResolutions();
-
         return () => {
             const stream = videoElement.srcObject;
             if (stream) {
@@ -103,32 +68,27 @@ export default function Webcam() {
     }, []);
 
     return (
-        // <div style={{ paddingTop: '4vh', width: '63.8vh', height: '48vh' }}>
-        //     <video
-        //         ref={videoRef}
-        //         autoPlay
-        //         style={{
-        //             objectFit: 'fill',
-        //             height: '48vh',
-        //             width: '63.8vh',
-        //             borderRadius: '10px',
-        //             border: '3px solid #82b956',
-        //             boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
-        //         }}
-        //     />
-        // </div>
         <div style={{ paddingTop: '4vh', height: '48vh' }}>
             <video
                 ref={videoRef}
                 autoPlay
                 style={{
-                    objectFit: 'contain',
                     height: '48vh',
                     borderRadius: '10px',
                     border: '3px solid #82b956',
                     boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
                 }}
             />
+            {/* <div className="arrow-path">
+                <div className="arrow right delay-1"></div>
+                <div className="arrow right delay-2"></div>
+                <div className="arrow right delay-3"></div>
+            </div> */}
+            <div class="arrow-container">
+                <div class="arrow right"></div>
+                <div class="arrow right"></div>
+                <div class="arrow right"></div>
+            </div>
         </div>
     );
 };
