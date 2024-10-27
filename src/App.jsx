@@ -4,6 +4,7 @@ import "./App.css";
 import AnalyzerView from "./components/AnalyzerView";
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
+import WebcamTest from "./components/WebcamTest";
 
 function App() {
   const tableRef = useRef(null);
@@ -95,6 +96,7 @@ function App() {
       <div ref={tableRef} className="app-container">
         <AnalyzerView state={state} />
       </div>
+      {/* <WebcamTest /> */}
     </div>
   );
 }

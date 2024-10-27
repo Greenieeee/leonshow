@@ -65,7 +65,8 @@ export default function Webcam() {
             const resolutions = [
                 { width: 1640, height: 1232 },
                 { width: 640, height: 480 },
-                { width: 1920, height: 1080 }
+                { width: 1920, height: 1080 },
+                { width: 1920, height: 640 }
             ];
         
             const supportedResolutions = [];
