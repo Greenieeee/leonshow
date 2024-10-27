@@ -9,8 +9,8 @@ export default function Webcam() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ 
                 video: {
-                    width: { exact: 1640 },
-                    height: { exact: 1232 },
+                    width: { ideal: 1640 },
+                    height: { ideal: 1232 },
                 }
              })
                 .then(stream => {
@@ -70,7 +70,14 @@ export default function Webcam() {
     }, []);
 
     return (
-        <div style={{ paddingTop: '4vh', height: '48vh' }}>
+        <div style={{ paddingTop: '4vh', height: '48vh', width: '100vw' }}>
+            <div className="arrow-path-left">
+                <div className="arrow-head-left delay-1"></div>
+                <div className="arrow-head-left delay-2"></div>
+                <div className="arrow-head-left delay-3"></div>
+                <div className="arrow-head-left delay-4"></div>
+                <div className="arrow-head-left delay-5"></div>
+            </div>
             <video
                 ref={videoRef}
                 autoPlay
@@ -81,6 +88,13 @@ export default function Webcam() {
                     boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
                 }}
             />
+            <div className="arrow-path-right">
+                <div className="arrow-head-right delay-5"></div>
+                <div className="arrow-head-right delay-4"></div>
+                <div className="arrow-head-right delay-3"></div>
+                <div className="arrow-head-right delay-2"></div>
+                <div className="arrow-head-right delay-1"></div>
+            </div>
         </div>
     );
 };
