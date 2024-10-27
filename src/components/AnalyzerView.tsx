@@ -11,7 +11,7 @@ interface AnalyzerViewProps {
 
 export default function AnalyzerView({ state }: AnalyzerViewProps) {
   const greetingArray = [
-    'Hello, I\'m Greenie!👋',
+    'Hello, I\'m Greenie!',
     'Bring item closer',
     'I will advise you',
     'Get a prize for sorting!',
