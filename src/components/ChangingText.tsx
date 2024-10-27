@@ -40,7 +40,7 @@ export default function ChangingText({ greetingArray }: ChangingTextProps) {
         initial={{ rotateX: 90, opacity: 0 }}
         animate={{ rotateX: 0, opacity: 1 }}
         exit={{ rotateX: -90, opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.2 }}
       >
         {greetingArray[currentIndex]}
       </motion.div>

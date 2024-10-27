@@ -7,7 +7,12 @@ export default function Webcam() {
         const videoElement = videoRef.current;
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 },
+                }
+            })
                 .then(stream => {
                     videoElement.srcObject = stream;
                     processStream(videoElement);
@@ -69,7 +74,7 @@ export default function Webcam() {
             <video
                 ref={videoRef}
                 autoPlay
-                style={{ 
+                style={{
                     objectFit: 'fill',
                     height: '48vh',
                     width: '63.8vh',
