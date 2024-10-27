@@ -9,8 +9,8 @@ export default function Webcam() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
                 video: {
-                    width: { ideal: 1920 },
-                    height: { ideal: 1080 },
+                    width: { exact: 1640 },
+                    height: { exact: 1232 },
                 }
             })
                 .then(stream => {
