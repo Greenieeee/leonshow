@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 export default function Webcam() {
     const videoRef = useRef(null);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
         const videoElement = videoRef.current;
@@ -15,7 +16,7 @@ export default function Webcam() {
              })
                 .then(stream => {
                     videoElement.srcObject = stream;
-                    // processStream(videoElement);
+                    processStream(videoElement);
                 })
                 .catch(error => {
                     console.error('Error accessing webcam: ', error);
@@ -41,23 +42,23 @@ export default function Webcam() {
 
                     sendFrameToBackend(frame);
                 }
-            }, 1000);
+            }, 2000);
         }
 
         function sendFrameToBackend(frame) {
-            // fetch('http://localhost:8080/streaming/uploadFrame', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ frame }),
-            //     headers: { 'Content-Type': 'application/json' },
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     if (data.triggered) {
-            //         console.log('Pose triggered: ', data);
-            //         // Handle the triggered event in the frontend
-            //     }
-            // })
-            // .catch(error => console.error('Error sending frame: ', error));
+            fetch('http://13.51.106.51:8080/streaming/uploadFrame', {
+                method: 'POST',
+                body: JSON.stringify({ frame }),
+                headers: { 'Content-Type': 'application/json' },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.triggered) {
+                    console.log('Pose triggered: ', data);
+                    // Handle the triggered event in the frontend
+                }
+            })
+            .catch(error => console.error('Error sending frame: ', error));
             console.log('frame sent');
         }
 
