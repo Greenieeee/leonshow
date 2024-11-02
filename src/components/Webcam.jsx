@@ -8,12 +8,12 @@ export default function Webcam() {
         const videoElement = videoRef.current;
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ 
+            navigator.mediaDevices.getUserMedia({
                 video: {
                     width: { ideal: 1640 },
                     height: { ideal: 1232 },
                 }
-             })
+            })
                 .then(stream => {
                     videoElement.srcObject = stream;
                     processStream(videoElement);
@@ -40,7 +40,7 @@ export default function Webcam() {
                     context.drawImage(video, 0, 0, canvas.width, canvas.height);
                     const frame = canvas.toDataURL('image/jpeg');
 
-                    sendFrameToBackend(frame);
+                    // sendFrameToBackend(frame);
                 }
             }, 2000);
         }
@@ -51,14 +51,14 @@ export default function Webcam() {
                 body: JSON.stringify({ frame }),
                 headers: { 'Content-Type': 'application/json' },
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.triggered) {
-                    console.log('Pose triggered: ', data);
-                    // Handle the triggered event in the frontend
-                }
-            })
-            .catch(error => console.error('Error sending frame: ', error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.triggered) {
+                        console.log('Pose triggered: ', data);
+                        // Handle the triggered event in the frontend
+                    }
+                })
+                .catch(error => console.error('Error sending frame: ', error));
             console.log('frame sent');
         }
 
@@ -71,7 +71,7 @@ export default function Webcam() {
     }, []);
 
     return (
-        <div style={{ paddingTop: '4vh', height: '48vh', width: '100vw' }}>
+        <div style={{ width: '100vw', height: '48vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div className="arrow-path-left">
                 <div className="arrow-head-left delay-1"></div>
                 <div className="arrow-head-left delay-2"></div>
@@ -79,15 +79,16 @@ export default function Webcam() {
                 <div className="arrow-head-left delay-4"></div>
                 <div className="arrow-head-left delay-5"></div>
             </div>
-            <video
-                ref={videoRef}
-                autoPlay
-                style={{
-                    height: '48vh',
-                    borderRadius: '10px',
-                    boxShadow: 'inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5)'
-                }}
-            />
+            <div className='video-wrapper'>
+                <video
+                    ref={videoRef}
+                    autoPlay
+                    style={{
+                        height: '100%',
+                        width: '100%'
+                    }}
+                />
+            </div>
             <div className="arrow-path-right">
                 <div className="arrow-head-right delay-5"></div>
                 <div className="arrow-head-right delay-4"></div>
