@@ -88,6 +88,7 @@ export default function Webcam() {
                         width: '100%'
                     }}
                 />
+                <div className="video-overlay"></div>
             </div>
             <div className="arrow-path-right">
                 <div className="arrow-head-right delay-5"></div>
