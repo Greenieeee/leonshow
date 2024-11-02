@@ -22,7 +22,7 @@ export default function AnalyzerView({ state }: AnalyzerViewProps) {
       <RandomMovingGradientBackground>
         <TextContent state={state} greetingArray={greetingArray} />
       </RandomMovingGradientBackground>
-      <div style={{ marginTop: '4vh', height: '48vh' }}>
+      <div style={{ marginTop: '4vh', height: '30vh' }}>
         <AnimatePresence mode='wait'>
           <motion.div
             key={state?.type}

@@ -71,7 +71,7 @@ export default function Webcam() {
     }, []);
 
     return (
-        <div style={{ width: '100vw', height: '48vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: '100vw', height: '30vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div className="arrow-path-left">
                 <div className="arrow-head-left delay-1"></div>
                 <div className="arrow-head-left delay-2"></div>
