@@ -596,8 +596,8 @@
 }
 
 .video-wrapper {
-  width: 813px;
-  height: 457px;
+  width: 64vh;
+  height: 48vh;
   display: flex;
   align-items: center;
   justify-content: center;
