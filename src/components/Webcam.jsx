@@ -46,7 +46,7 @@ export default function Webcam() {
         }
 
         function sendFrameToBackend(frame) {
-            fetch('https://greeniebins.com:8080/streaming/uploadFrame', {
+            fetch('https://greeniebins.com:8443/streaming/uploadFrame', {
                 method: 'POST',
                 body: JSON.stringify({ frame }),
                 headers: { 'Content-Type': 'application/json' },
