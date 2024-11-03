@@ -5,6 +5,8 @@ import foodwasteAnimation from '../assets/animations/foodwasteAnimation.json';
 import glassAnimation from '../assets/animations/glassAnimation.json';
 import paperAnimation from '../assets/animations/paperAnimation.json';
 import plasticAnimation from '../assets/animations/plasticAnimation.json';
+import sadAnimation from '../assets/animations/sadAnimation.json';
+import generalWaste from '../assets/animations/generalWaste.json';
 import Lottie from "react-lottie";
 import { FoundWaste } from "../types";
 import LottieWrapper from './LottieWrapper';
@@ -28,27 +30,25 @@ export default function FinishedAnalyzingLottie({ foundWaste }: FinishedAnalyzin
                 return paperAnimation;
             case 'plastic':
                 return plasticAnimation;
+            case 'generalWaste':
+                return generalWaste;
+            case 'noDetection':
+                return sadAnimation;
             default:
                 return null;
         }
     };
 
     return (
-        <>
-            {foundWaste.category === 'noDetection' ? (
-                null
-            ) : (
-                <LottieWrapper>
-                    <Lottie
-                        options={{
-                            animationData: getLottieAnimation(foundWaste.category),
-                            loop: true,
-                        }}
-                        height={400}
-                        width={400}
-                    />
-                </LottieWrapper>
-            )}
-        </>
+        <LottieWrapper>
+            <Lottie
+                options={{
+                    animationData: getLottieAnimation(foundWaste.category),
+                    loop: true,
+                }}
+                height={400}
+                width={400}
+            />
+        </LottieWrapper>
     );
 }

@@ -40,13 +40,13 @@ export default function Webcam() {
                     context.drawImage(video, 0, 0, canvas.width, canvas.height);
                     const frame = canvas.toDataURL('image/jpeg');
 
-                    // sendFrameToBackend(frame);
+                    sendFrameToBackend(frame);
                 }
-            }, 2000);
+            }, 1000);
         }
 
         function sendFrameToBackend(frame) {
-            fetch('https://greeniebins.com:8443/streaming/uploadFrame', {
+            fetch('https://greeniebins.com:8080/streaming/uploadFrame', {
                 method: 'POST',
                 body: JSON.stringify({ frame }),
                 headers: { 'Content-Type': 'application/json' },
