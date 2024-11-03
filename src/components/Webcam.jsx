@@ -51,13 +51,7 @@ export default function Webcam() {
                 body: JSON.stringify({ frame }),
                 headers: { 'Content-Type': 'application/json' },
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.triggered) {
-                        console.log('Pose triggered: ', data);
-                        // Handle the triggered event in the frontend
-                    }
-                })
+                .then(console.log('Frame sent response'))
                 .catch(error => console.error('Error sending frame: ', error));
             console.log('frame sent');
         }
