@@ -84,8 +84,8 @@ export default function Webcam() {
                     ref={videoRef}
                     autoPlay
                     style={{
-                        height: '100%',
-                        width: '100%'
+                        height: '101%',
+                        width: '101%'
                     }}
                 />
                 <div className="video-overlay"></div>

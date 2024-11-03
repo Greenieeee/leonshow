@@ -606,8 +606,6 @@
   transition: opacity 0.3s ease;
   box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5);
   animation: pulse 1.8s infinite ease-in-out;
-  /* box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.7), 0px 0px 15px 5px rgba(163, 185, 84, 0.5);
-  animation: glow 2s ease-in-out infinite; */
 }
 
 @keyframes pulse {
@@ -639,7 +637,7 @@
 
   20% {
     transform: scale(1);
-    box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.9), 0px 0px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.7), 0px 0px 25px rgba(0, 0, 0, 0.5);
   }
 
   50% {
