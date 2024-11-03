@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     // const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const backendUrl = "https://greeniebins.com:8080/";
+    const backendUrl = "https://greeniebins.com:8080";
     const socket = new SockJS(backendUrl + '/ws');
     const client = Stomp.over(socket);
 
