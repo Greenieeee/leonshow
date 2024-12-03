@@ -4,22 +4,13 @@ import "./App.css";
 import AnalyzerView from "./components/AnalyzerView";
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
-import WebcamTest from "./components/WebcamTest";
 
 function App() {
   const tableRef = useRef(null);
   const [state, setState] = useState({ type: 'nothingDetected' });
-  // const [state, setState] = useState({ type: 'analyzing' });
-  // const foundWaste = {
-  //   category: 'plastic',
-  //   desc: 'Plastic bottle',
-  //   reason: 'It is recyclable',
-  // };
-  // const [state, setState] = useState({ type: 'finishedAnalyzing', foundWaste });
 
   useEffect(() => {
-    // const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const backendUrl = "https://greeniebins.com:8443";
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const socket = new SockJS(backendUrl + '/ws');
     const client = Stomp.over(socket);
 
@@ -34,33 +25,7 @@ function App() {
         setState(responseObj.foundWaste ? { type: responseObj.state, foundWaste: responseObj.foundWaste } : { type: responseObj.state });
       });
     });
-
-    // return () => {
-    //   client.disconnect();
-    // }
   }, [tableRef]);
-
-  // useEffect(() => {
-  //   const analyzingTimer = setTimeout(() => {
-  //     setState({ type: 'analyzing' });
-  //   }, 5000);
-
-  //   const finishedAnalyzingTimer = setTimeout(() => {
-  //     const foundWaste = {
-  //       category: 'plastic',
-  //       desc: 'Plastic Bottle',
-  //       reason: 'It is recyclable',
-  //     };
-  //     setState({ type: 'finishedAnalyzing', foundWaste });
-  //   }, 10000);
-  //   const primaryStateTimer = setTimeout(() => {
-  //     setState({ type: 'nothingDetected' });
-  //   }, 15000);
-  //   return () => {
-  //     clearTimeout(analyzingTimer);
-  //     clearTimeout(finishedAnalyzingTimer);
-  //   };
-  // }, []);
 
   const enterFullscreen = () => {
     const elem = tableRef.current;

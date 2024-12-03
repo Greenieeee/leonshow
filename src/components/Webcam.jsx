@@ -25,38 +25,40 @@ export default function Webcam() {
             console.error('getUserMedia is not supported in this browser.');
         }
 
+        let intervalId;
+
         function processStream(video) {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
-            setInterval(() => {
+            intervalId = setInterval(() => {
+                console.log('setInterval triggered');
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
-
+            
                 if (video.readyState === video.HAVE_ENOUGH_DATA) {
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-
+                    console.log('Video has enough data');
                     context.drawImage(video, 0, 0, canvas.width, canvas.height);
                     const frame = canvas.toDataURL('image/jpeg');
-
                     sendFrameToBackend(frame);
                 }
             }, 1000);
         }
 
         function sendFrameToBackend(frame) {
-            fetch('https://greeniebins.com:8443/streaming/uploadFrame', {
+            console.log('Preparing to send frame');
+            fetch((backendUrl + '/streaming/uploadFrame'), {
                 method: 'POST',
                 body: JSON.stringify({ frame }),
                 headers: { 'Content-Type': 'application/json' },
             })
-                .then(console.log('Frame sent response'))
+                .then(() => console.log('Frame sent successfully'))
                 .catch(error => console.error('Error sending frame: ', error));
-            console.log('frame sent');
+            console.log('Frame function completed');
         }
 
         return () => {
+            if (intervalId) clearInterval(intervalId);
             const stream = videoElement.srcObject;
             if (stream) {
                 stream.getTracks().forEach(track => track.stop());
